@@ -1,5 +1,4 @@
 const cors = require('cors');
-app.use(cors());
 const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
@@ -20,8 +19,10 @@ const Genres = Models.Genre;
 
 let auth = require('./auth.js')(app);
 
-mongoose.connect('mongodb://localhost:27017/MYmdb', { useNewUrlParser: true, useUnifiedTopology: true});
+//mongoose.connect('mongodb://localhost:27017/MYmdb', { useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect('process.env.CONNECTION_URI', { useNewUrlParser: true, useUnifiedTopology: true});
 
+app.use(cors());
 // Logging with Morgan
 app.use(morgan('common'));
 
